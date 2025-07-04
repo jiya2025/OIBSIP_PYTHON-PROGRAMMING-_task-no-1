@@ -1,0 +1,51 @@
+server.py-Chat server 
+import socket
+
+# Server configuration
+HOST = '127.0.0.1'  # Localhost
+PORT = 65432        # Port to listen on
+
+# Creating a socket object
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind((HOST, PORT))
+server.listen()
+
+print("Server is listening...")
+
+conn, addr = server.accept()
+print(f"Connected by {addr}")
+
+while True:
+    msg = conn.recv(1024).decode('utf-8')
+    if msg.lower() == 'exit':
+        print("Client disconnected.")
+        break
+    print("Client:", msg)
+    reply = input("You: ")
+    conn.sendall(reply.encode('utf-8'))
+
+conn.close()
+
+
+client.py-Chat client
+import socket
+
+# Server details
+HOST = '127.0.0.1'
+PORT = 65432
+
+# Creating a socket object
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((HOST, PORT))
+
+print("Connected to server. Type 'exit' to quit.")
+
+while True:
+    msg = input("You: ")
+    client.sendall(msg.encode('utf-8'))
+    if msg.lower() == 'exit':
+        break
+    reply = client.recv(1024).decode('utf-8')
+    print("Server:", reply)
+
+client.close()
