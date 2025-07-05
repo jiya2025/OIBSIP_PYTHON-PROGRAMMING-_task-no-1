@@ -4,6 +4,7 @@
  🎯 **Objective:**
 
 To develop a **basic voice assistant** using Python that can perform simple tasks like greeting the user, telling the current time/date, opening websites, searching on Google or Wikipedia, and responding to basic voice commands.
+
  🛠️ **Tools & Libraries Used:**
 
 | Tool / Library       | Purpose                                |
